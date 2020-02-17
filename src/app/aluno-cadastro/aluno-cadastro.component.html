@@ -1,0 +1,36 @@
+<div class="container">
+  <form>
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <h1>Novo Aluno</h1>
+      </div>
+
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>Nome</label>
+        <input type="text" pInputText />
+      </div>
+      <div class="ui-g-6 ui-md-3 ui-fluid">
+        <label>CPF</label>
+        <p-inputMask mask="999.999.999-99"></p-inputMask>
+      </div>
+      <div class="ui-g-6 ui-md-3 ui-fluid">
+        <label>Matrícula</label>
+        <input type="text" pInputText />
+      </div>
+      <div class="ui-g-6 ui-md-3 ui-fluid">
+        <label>Data de Nascimento</label>
+        <p-calendar dateFormat="dd/mm/yy" [showIcon]="true"></p-calendar>
+      </div>
+      <div class="ui-g-9 ui-md-6 ui-fluid">
+        <label>Disciplina</label>
+        <p-dropdown placeholder="Selecione..." autoWidth="false"
+                    [options]="disciplinas"> </p-dropdown>
+      </div>
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Salvar" class="ui-button-success" style="margin-right: 8px"></button>
+        <button pButton type="button" label="Novo" style="margin-right: 8px"></button>
+        <a href="javascript:;">Voltar para listagem</a>
+      </div>
+    </div>
+  </form>
+</div>
