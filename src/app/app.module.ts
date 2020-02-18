@@ -18,6 +18,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { DisciplinaCadastroComponent } from './disciplina-cadastro/disciplina-cadastro.component';
 import {FormsModule} from '@angular/forms';
 import { ProfessorCadastroComponent } from './professor-cadastro/professor-cadastro.component';
+import { MessageComponent } from './message/message.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ProfessorCadastroComponent } from './professor-cadastro/professor-cadas
     DisciplinasListagemComponent,
     AlunoCadastroComponent,
     DisciplinaCadastroComponent,
-    ProfessorCadastroComponent
+    ProfessorCadastroComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,

@@ -15,7 +15,16 @@
         <div class="ui-g-12 ui-md-6 ui-fluid">
           <label>Nome</label>
           <input pInputText type="text" name="nome"
-                 required minlength="4"/>
+           ngModel #nome="ngModel" required minlength="4" maxlength="50"/>
+
+          <div *ngIf="nome.hasError('required') && nome.dirty"
+            class="ui-message ui-message-error">
+            Informe o nome!
+          </div>
+          <div *ngIf="nome.hasError('minlength') && nome.dirty"
+               class="ui-message ui-message-error">
+            O nome deve ter no mínimo {{nome.errors.minlength.requiredLength}} caracteres!!
+          </div>
         </div>
         <div class="ui-g-6 ui-md-3 ui-fluid">
           <label>Matrícula</label>
