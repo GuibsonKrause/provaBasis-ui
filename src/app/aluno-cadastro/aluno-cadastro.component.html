@@ -1,36 +1,50 @@
 <div class="container">
-  <form>
-    <div class="ui-g">
-      <div class="ui-g-12">
-        <h1>Novo Aluno</h1>
-      </div>
 
-      <div class="ui-g-12 ui-md-6 ui-fluid">
-        <label>Nome</label>
-        <input type="text" pInputText />
-      </div>
-      <div class="ui-g-6 ui-md-3 ui-fluid">
-        <label>CPF</label>
-        <p-inputMask mask="999.999.999-99"></p-inputMask>
-      </div>
-      <div class="ui-g-6 ui-md-3 ui-fluid">
-        <label>Matrícula</label>
-        <input type="text" pInputText />
-      </div>
-      <div class="ui-g-6 ui-md-3 ui-fluid">
-        <label>Data de Nascimento</label>
-        <p-calendar dateFormat="dd/mm/yy" [showIcon]="true"></p-calendar>
-      </div>
-      <div class="ui-g-9 ui-md-6 ui-fluid">
-        <label>Disciplina</label>
-        <p-dropdown placeholder="Selecione..." autoWidth="false"
-                    [options]="disciplinas"> </p-dropdown>
-      </div>
-      <div class="ui-g-12">
-        <button pButton type="submit" label="Salvar" class="ui-button-success" style="margin-right: 8px"></button>
-        <button pButton type="button" label="Novo" style="margin-right: 8px"></button>
-        <a href="javascript:;">Voltar para listagem</a>
-      </div>
+  <div class="ui-g">
+    <div class="ui-g-12">
+      {{usuarioForm.valid}}
     </div>
-  </form>
-</div>
+
+
+    <form #usuarioForm="ngForm">
+      <div class="ui-g">
+        <div class="ui-g-12">
+          <h1>Novo Aluno</h1>
+        </div>
+
+        <div class="ui-g-12 ui-md-6 ui-fluid">
+          <label>Nome</label>
+          <input pInputText type="text" name="nome"
+                 required minlength="4"/>
+        </div>
+        <div class="ui-g-6 ui-md-3 ui-fluid">
+          <label>CPF</label>
+          <p-inputMask mask="999.999.999-99"></p-inputMask>
+        </div>
+        <div class="ui-g-6 ui-md-3 ui-fluid">
+          <label>Matrícula</label>
+          <input type="text" pInputText/>
+        </div>
+        <div class="ui-g-12 ui-md-4 ui-fluid">
+          <p-listbox [options]="disciplinas" [(ngModel)]="disciplinasSelecionadas"  name="listDisciplina"
+                     multiple="multiple" checkbox="checkbox" filter="filter" optionLabel="name" >
+            <p-header>
+              <i class="fa fa-book"></i>
+              Disciplinas
+            </p-header>
+          </p-listbox>
+          <p>Disciplinas Selecionadas: <span *ngFor="let c of disciplinasSelecionadas" style="margin-right: 10px">{{c.name}}</span></p>
+        </div>
+        <div class="ui-g-6 ui-md-3 ui-fluid">
+          <label>Data de Nascimento</label>
+          <p-calendar dateFormat="dd/mm/yy" [showIcon]="true"></p-calendar>
+        </div>
+        <div class="ui-g-12">
+          <button pButton type="submit" label="Salvar" class="ui-button-success" style="margin-right: 8px"
+                  [disabled]="!usuarioForm.valid"></button>
+          <button pButton type="button" label="Novo" style="margin-right: 8px"></button>
+          <a href="javascript:;">Voltar para listagem</a>
+        </div>
+      </div>
+    </form>
+  </div>

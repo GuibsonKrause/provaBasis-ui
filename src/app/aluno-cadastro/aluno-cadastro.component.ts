@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+
+interface Disciplina {
+  name: any;
+  code: any;
+}
 
 @Component({
   selector: 'app-aluno-cadastro',
@@ -6,16 +11,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./aluno-cadastro.component.css']
 })
 export class AlunoCadastroComponent {
-  disciplinas = [
-    {label: 'Português', value: 1},
-    {label: 'Matemática', value: 2},
-    {label: 'Historia', value: 3},
-    {label: 'Geografia', value: 4},
-    {label: 'Artes', value: 5},
-    {label: 'Biologia', value: 6},
-    {label: 'Sociologia', value: 7},
-    {label: 'Filosofia', value: 8},
-    {label: 'Linguas Extrangeiras', value: 9},
-    {label: 'Educação Física', value: 10}
-  ];
+  disciplinas: Disciplina[];
+  disciplinasSelecionadas: Disciplina[];
+
+  constructor() {
+    this.disciplinas = [
+      {name: 'Português', code: 1},
+      {name: 'Matemática', code: 2},
+      {name: 'Historia', code: 3},
+      {name: 'Geografia', code: 4},
+      {name: 'Artes', code: 5},
+      {name: 'Biologia', code: 6},
+      {name: 'Sociologia', code: 7},
+      {name: 'Filosofia', code: 8},
+      {name: 'Linguas Extrangeiras', code: 9},
+      {name: 'Educação Física', code: 10}
+    ];
+  }
 }

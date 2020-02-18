@@ -13,9 +13,11 @@ import { DisciplinasListagemComponent } from './disciplinas-listagem/disciplinas
 import { AlunoCadastroComponent } from './aluno-cadastro/aluno-cadastro.component';
 import {InputTextModule} from 'primeng/inputtext';
 import { CalendarModule } from 'primeng/calendar';
-import {ChipsModule, DropdownModule, InputMaskModule} from 'primeng';
+import {CheckboxModule, ChipsModule, DropdownModule, InputMaskModule, ListboxModule, PaginatorModule} from 'primeng';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { DisciplinaCadastroComponent } from './disciplina-cadastro/disciplina-cadastro.component';
+import {FormsModule} from '@angular/forms';
+import { ProfessorCadastroComponent } from './professor-cadastro/professor-cadastro.component';
 
 @NgModule({
   declarations: [
@@ -25,10 +27,12 @@ import { DisciplinaCadastroComponent } from './disciplina-cadastro/disciplina-ca
     ProfessoresListagemComponent,
     DisciplinasListagemComponent,
     AlunoCadastroComponent,
-    DisciplinaCadastroComponent
+    DisciplinaCadastroComponent,
+    ProfessorCadastroComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     TableModule,
     ButtonModule,
@@ -38,7 +42,10 @@ import { DisciplinaCadastroComponent } from './disciplina-cadastro/disciplina-ca
     CalendarModule,
     BrowserAnimationsModule,
     DropdownModule,
-    InputMaskModule
+    InputMaskModule,
+    PaginatorModule,
+    ListboxModule,
+    CheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

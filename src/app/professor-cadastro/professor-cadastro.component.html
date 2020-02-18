@@ -9,29 +9,26 @@
     <form #usuarioForm="ngForm">
       <div class="ui-g">
         <div class="ui-g-12">
-          <h1>Nova Disciplina</h1>
+          <h1>Novo Professor</h1>
         </div>
 
         <div class="ui-g-12 ui-md-6 ui-fluid">
           <label>Nome</label>
-          <input type="text" maxlength="50" pInputText required minlength="4"/>
-        </div>
-        <div class="ui-g-12 ui-md-6 ui-fluid">
-          <label>Descrição</label>
-          <input type="text" maxlength="200" pInputText required minlength="1"/>
-        </div>
-        <div class="ui-g-9 ui-md-6 ui-fluid">
-          <label>Professor</label>
-          <p-dropdown placeholder="Selecione..." autoWidth="false"
-                      [options]="professores"> </p-dropdown>
+          <input pInputText type="text" name="nome"
+                 required minlength="4"/>
         </div>
         <div class="ui-g-6 ui-md-3 ui-fluid">
-          <label>Carga horária</label>
-          <input type="text" pInputText required/>
+          <label>Matrícula</label>
+          <input type="text" pInputText/>
         </div>
-        <div class="ui-g-12">
-          <label>Ativa </label>
-          <p-checkbox [(ngModel)]="checked" binary="true" name="checkAtiva"></p-checkbox>
+        <div class="ui-g-12 ui-md-6 ui-fluid">
+          <label>Área de atuação</label>
+          <input pInputText type="text" maxlength="200"
+                 required minlength="1"/>
+        </div>
+        <div class="ui-g-6 ui-md-3 ui-fluid">
+          <label>Data de Nascimento</label>
+          <p-calendar dateFormat="dd/mm/yy" [showIcon]="true"></p-calendar>
         </div>
         <div class="ui-g-12">
           <button pButton type="submit" label="Salvar" class="ui-button-success" style="margin-right: 8px"
