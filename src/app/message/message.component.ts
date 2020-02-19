@@ -1,15 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-message',
-  templateUrl: './message.component.html',
-  styleUrls: ['./message.component.css']
+  template: `
+    <div *ngIf="temErro()" class="ui-message ui-message-error">
+      {{text}}
+    </div>
+  `,
+  styles: [`
+    .ui-message-error {
+      margin: 0;
+      margin-top: 5px;
+    }
+  `]
 })
-export class MessageComponent implements OnInit {
+export class MessageComponent {
+  @Input() error: string;
+  @Input() control: FormControl;
+  @Input() text: string;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  temErro(): boolean {
+    return  this.control.hasError(this.error) && this.control.dirty;
   }
-
 }

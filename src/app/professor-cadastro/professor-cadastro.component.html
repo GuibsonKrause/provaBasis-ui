@@ -1,50 +1,52 @@
 <div class="container">
-
-  <div class="ui-g">
-    <div class="ui-g-12">
-      {{usuarioForm.valid}}
-    </div>
-
-
-    <form #usuarioForm="ngForm">
-      <div class="ui-g">
-        <div class="ui-g-12">
-          <h1>Novo Professor</h1>
-        </div>
-
-        <div class="ui-g-12 ui-md-6 ui-fluid">
-          <label>Nome</label>
-          <input pInputText type="text" name="nome"
-           ngModel #nome="ngModel" required minlength="4" maxlength="50"/>
-
-          <div *ngIf="nome.hasError('required') && nome.dirty"
-            class="ui-message ui-message-error">
-            Informe o nome!
-          </div>
-          <div *ngIf="nome.hasError('minlength') && nome.dirty"
-               class="ui-message ui-message-error">
-            O nome deve ter no mínimo {{nome.errors.minlength.requiredLength}} caracteres!!
-          </div>
-        </div>
-        <div class="ui-g-6 ui-md-3 ui-fluid">
-          <label>Matrícula</label>
-          <input type="text" pInputText/>
-        </div>
-        <div class="ui-g-12 ui-md-6 ui-fluid">
-          <label>Área de atuação</label>
-          <input pInputText type="text" maxlength="200"
-                 required minlength="1"/>
-        </div>
-        <div class="ui-g-6 ui-md-3 ui-fluid">
-          <label>Data de Nascimento</label>
-          <p-calendar dateFormat="dd/mm/yy" [showIcon]="true"></p-calendar>
-        </div>
-        <div class="ui-g-12">
-          <button pButton type="submit" label="Salvar" class="ui-button-success" style="margin-right: 8px"
-                  [disabled]="!usuarioForm.valid"></button>
-          <button pButton type="button" label="Novo" style="margin-right: 8px"></button>
-          <a href="javascript:;">Voltar para listagem</a>
-        </div>
+  <form #usuarioForm="ngForm">
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <h1>Novo Professor</h1>
       </div>
-    </form>
-  </div>
+
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>Nome</label>
+        <input pInputText type="text" name="nome"
+               ngModel #nome="ngModel" required minlength="4" maxlength="50"/>
+
+        <app-message [control]="nome" error="required"
+                     text="Informe um nome"></app-message>
+        <app-message [control]="nome" error="minlength"
+                     text="O nome deve ter no mínimo {{nome.errors?.minlength?.requiredLength}}
+                        caracteres!"></app-message>
+      </div>
+      <div class="ui-g-6 ui-md-3 ui-fluid">
+        <label>Matrícula</label>
+        <input type="text" pInputText name="matricula"
+               ngModel #matricula="ngModel" required minlength="6" maxlength="6"/>
+
+        <app-message [control]="matricula" error="required"
+                     text="Informe a matrícula"></app-message>
+        <app-message [control]="matricula" error="minlength"
+                     text="A matrícula deve ter {{matricula.errors?.minlength?.requiredLength}}
+                        caracteres!"></app-message>
+      </div>
+      <div class="ui-g-12 ui-md-6 ui-fluid">
+        <label>Área de atuação</label>
+        <input type="text" pInputText name="atuacao"
+               ngModel #atuacao="ngModel" required/>
+        <app-message [control]="atuacao" error="required"
+                     text="Informe a área de atuação"></app-message>
+      </div>
+      <div class="ui-g-6 ui-md-3 ui-fluid">
+        <label>Data de Nascimento</label>
+        <p-calendar dateFormat="dd/mm/yy" [showIcon]="true" name="nascimento"
+                    ngModel #nascimento="ngModel" required></p-calendar>
+        <app-message [control]="nascimento" error="required"
+                     text="Informe a data de nascimento"></app-message>
+      </div>
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Salvar" class="ui-button-success" style="margin-right: 8px"
+                [disabled]="!usuarioForm.valid"></button>
+        <button pButton type="button" label="Novo" style="margin-right: 8px"></button>
+        <a href="javascript:;">Voltar para listagem</a>
+      </div>
+    </div>
+  </form>
+</div>
