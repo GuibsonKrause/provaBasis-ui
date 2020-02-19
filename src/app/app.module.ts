@@ -47,7 +47,7 @@ import { MessageComponent } from './message/message.component';
     InputMaskModule,
     PaginatorModule,
     ListboxModule,
-    CheckboxModule
+    CheckboxModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
