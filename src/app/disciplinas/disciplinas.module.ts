@@ -1,31 +1,32 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {DisciplinasListagemComponent} from './disciplinas-listagem/disciplinas-listagem.component';
+import {DisciplinaCadastroComponent} from './disciplina-cadastro/disciplina-cadastro.component';
 import {FormsModule} from '@angular/forms';
 import {AppRoutingModule} from '../app-routing.module';
 import {
   ButtonModule,
-  CalendarModule,
+  CalendarModule, CheckboxModule,
   ChipsModule,
+  DropdownModule,
   InputMaskModule,
   InputTextModule, ListboxModule, PaginatorModule,
   TableModule,
   TooltipModule
 } from 'primeng';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {AlunosListagemComponent} from './alunos-listagem/alunos-listagem.component';
-import {AlunoCadastroComponent} from './aluno-cadastro/aluno-cadastro.component';
 import {SharedModule} from '../shared/shared.module';
 
 
 
 @NgModule({
   declarations: [
-    AlunosListagemComponent,
-    AlunoCadastroComponent,
+    DisciplinasListagemComponent,
+    DisciplinaCadastroComponent,
   ],
   exports: [
-    AlunosListagemComponent,
-    AlunoCadastroComponent,
+    DisciplinasListagemComponent,
+    DisciplinaCadastroComponent,
   ],
   imports: [
     CommonModule,
@@ -38,10 +39,12 @@ import {SharedModule} from '../shared/shared.module';
     InputTextModule,
     CalendarModule,
     BrowserAnimationsModule,
+    DropdownModule,
     InputMaskModule,
     PaginatorModule,
     ListboxModule,
-    SharedModule,
+    CheckboxModule,
+    SharedModule
   ]
 })
-export class AlunosModule { }
+export class DisciplinasModule { }
