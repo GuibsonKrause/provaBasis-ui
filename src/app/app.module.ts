@@ -6,11 +6,9 @@ import { AppComponent } from './app.component';
 import { TableModule } from 'primeng/table';
 import {ButtonModule} from 'primeng/button';
 import { TooltipModule } from 'primeng/tooltip';
-import { AlunosListagemComponent } from './alunos-listagem/alunos-listagem.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ProfessoresListagemComponent } from './professores-listagem/professores-listagem.component';
 import { DisciplinasListagemComponent } from './disciplinas-listagem/disciplinas-listagem.component';
-import { AlunoCadastroComponent } from './aluno-cadastro/aluno-cadastro.component';
 import {InputTextModule} from 'primeng/inputtext';
 import { CalendarModule } from 'primeng/calendar';
 import {CheckboxModule, ChipsModule, DropdownModule, InputMaskModule, ListboxModule, PaginatorModule} from 'primeng';
@@ -19,15 +17,14 @@ import { DisciplinaCadastroComponent } from './disciplina-cadastro/disciplina-ca
 import {FormsModule} from '@angular/forms';
 import { ProfessorCadastroComponent } from './professor-cadastro/professor-cadastro.component';
 import { MessageComponent } from './message/message.component';
+import {AlunosModule} from './alunos/alunos.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AlunosListagemComponent,
     NavbarComponent,
     ProfessoresListagemComponent,
     DisciplinasListagemComponent,
-    AlunoCadastroComponent,
     DisciplinaCadastroComponent,
     ProfessorCadastroComponent,
     MessageComponent
@@ -48,6 +45,7 @@ import { MessageComponent } from './message/message.component';
     PaginatorModule,
     ListboxModule,
     CheckboxModule,
+    AlunosModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
