@@ -1,21 +1,59 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {AlunoService} from '../aluno.service';
+import * as moment from 'moment';
+import {ToastyService} from 'ng2-toasty';
+import {ConfirmationService} from 'primeng';
+import {ErrorHandlerService} from '../../core/error-handler.service';
 
 @Component({
   selector: 'app-alunos-listagem',
   templateUrl: './alunos-listagem.component.html',
   styleUrls: ['./alunos-listagem.component.css']
 })
-export class AlunosListagemComponent {
-  alunos = [
-    {Id: 1, Nome: 'Fulano de Tau', Matricula: '123456', Idade: 56},
-    {Id: 2, Nome: 'Bertrano', Matricula: '369258', Idade: 32},
-    {Id: 3, Nome: 'João da Silva', Matricula: '157954', Idade: 98},
-    {Id: 4, Nome: 'Dona Maria', Matricula: '754896', Idade: 85},
-    {Id: 5, Nome: 'Silverina das Neves', Matricula: '789426', Idade: 15},
-    {Id: 6, Nome: 'Sebastiana', Matricula: '657416', Idade: 52},
-    {Id: 7, Nome: 'Paula Tejando', Matricula: '854796', Idade: 25},
-    {Id: 8, Nome: 'Tomas Turbando', Matricula: '126497', Idade: 35},
-    {Id: 9, Nome: 'Beijamin Arrola', Matricula: '594612', Idade: 45},
-    {Id: 10, Nome: 'Oscar Alho', Matricula: '421684', Idade: 16}
-  ];
+export class AlunosListagemComponent implements OnInit {
+  alunos = [];
+  @ViewChild('table') grid;
+
+  constructor(
+    private alunoService: AlunoService,
+    private toasty: ToastyService,
+    private confirmation: ConfirmationService,
+    private errorHandler: ErrorHandlerService
+  ) {
+  }
+
+  ngOnInit() {
+    this.pesquisar();
+  }
+
+  pesquisar() {
+    this.alunoService.pesquisar()
+      .then(alunos => this.alunos = alunos)
+      .catch(erro => this.errorHandler.handler(erro));
+  }
+
+  public calcularIdade(nascimento: any): number {
+    return moment().diff(nascimento, 'years');
+  }
+
+  confirmarExlusao(aluno: any) {
+    this.confirmation.confirm({
+      message: 'Deseja excluir este aluno?',
+      accept: () => {
+        this.excluir(aluno);
+      }
+    });
+  }
+
+  excluir(aluno: any) {
+    this.alunoService.excluir(aluno.id)
+      .then(() => {
+        this.grid.first = 0;
+        this.pesquisar();
+
+        this.toasty.success('Aluno excluido com sucesso!');
+      })
+      .catch(erro => this.errorHandler.handler(erro));
+  }
+
 }

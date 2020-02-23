@@ -9,7 +9,7 @@
     <div class="ui-g">
       <div class="ui-g-12">
         <p-table [value]="alunos" [paginator]="true" [rows]="5"
-                 [responsive]="true">
+                 [responsive]="true" #table>
           <ng-template pTemplate="header">
             <tr>
               <th class="col-id">Id</th>
@@ -21,16 +21,18 @@
           </ng-template>
           <ng-template pTemplate="body" let-aluno>
             <tr>
-              <td class="col-id"><span class="ui-column-title">Id</span>{{ aluno.Id }}</td>
-              <td><span class="ui-column-title">Nome</span>{{ aluno.Nome }}</td>
-              <td class="col-matricula"><span class="ui-column-title">Matricula</span>{{ aluno.Matricula }}</td>
-              <td class="col-idade"><span class="ui-column-title">Idade</span>{{ aluno.Idade }}</td>
+              <td class="col-id"><span class="ui-column-title">Id</span>{{ aluno.id }}</td>
+              <td><span class="ui-column-title">Nome</span>{{ aluno.nome }}</td>
+              <td class="col-matricula"><span class="ui-column-title">Matricula</span>{{ aluno.matricula }}</td>
+              <td class="col-idade"><span class="ui-column-title">Idade</span>{{ calcularIdade(aluno.dataNascimento) }}
+              </td>
               <td class="col-acoes">
                 <a pButton icon="fa fa-eye" style="margin-right: 8px"
                    pTooltip="Detalhar" tooltipPosition="top">
                 </a>
                 <button pButton icon="fa fa-trash"
-                        pTooltip="Excluir" tooltipPosition="top">
+                        pTooltip="Excluir" tooltipPosition="top"
+                        (click)="confirmarExlusao(aluno)">
                 </button>
               </td>
             </tr>
