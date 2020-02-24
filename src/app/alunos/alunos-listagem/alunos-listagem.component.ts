@@ -46,7 +46,7 @@ export class AlunosListagemComponent implements OnInit {
   }
 
   excluir(aluno: any) {
-    this.alunoService.excluir(aluno.id)
+    this.alunoService.excluir(aluno.matricula)
       .then(() => {
         this.grid.first = 0;
         this.pesquisar();
