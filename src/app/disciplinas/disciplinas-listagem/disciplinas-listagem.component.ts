@@ -1,21 +1,58 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import * as moment from 'moment';
+import {ToastyService} from 'ng2-toasty';
+import {ConfirmationService} from 'primeng';
+import {ErrorHandlerService} from '../../core/error-handler.service';
+import {ProfessorService} from '../../professores/professor.service';
+import {DisciplinaService} from '../disciplina.service';
 
 @Component({
   selector: 'app-disciplinas-listagem',
   templateUrl: './disciplinas-listagem.component.html',
   styleUrls: ['./disciplinas-listagem.component.css']
 })
-export class DisciplinasListagemComponent {
-  disciplinas = [
-    {Id: 1, Nome: 'Português', Descricao: 'Os 4 porquês', CargaHoraria: '10 Hrs'},
-    {Id: 2, Nome: 'Matemática', Descricao: 'Limites', CargaHoraria: '20 Hrs'},
-    {Id: 3, Nome: 'Historia', Descricao: 'Primeira Guerra', CargaHoraria: '30 Hrs' },
-    {Id: 4, Nome: 'Geografia', Descricao: 'Mapa', CargaHoraria: '40 Hrs' },
-    {Id: 5, Nome: 'Artes', Descricao: 'Desenhar', CargaHoraria: '50 Hrs' },
-    {Id: 6, Nome: 'Biologia', Descricao: 'Mitocondres', CargaHoraria: '60 Hrs' },
-    {Id: 7, Nome: 'Sociologia', Descricao: 'Socialismo', CargaHoraria: '70 Hrs' },
-    {Id: 8, Nome: 'Filosofia', Descricao: 'Socrates', CargaHoraria: '80 Hrs' },
-    {Id: 9, Nome: 'Linguas Extrangeiras', Descricao: 'Inglês', CargaHoraria: '90 Hrs' },
-    {Id: 10, Nome: 'Educação Física', Descricao: 'Jogar bola', CargaHoraria: '100 Hrs' }
-  ];
+export class DisciplinasListagemComponent implements OnInit {
+  disciplinas = [];
+
+  @ViewChild('table') grid;
+
+  constructor(
+    private disciplinaService: DisciplinaService,
+    private toasty: ToastyService,
+    private confirmation: ConfirmationService,
+    private errorHandler: ErrorHandlerService
+  ) {
+  }
+
+  ngOnInit() {
+    this.pesquisar();
+  }
+
+
+  pesquisar() {
+    this.disciplinaService.pesquisar()
+      .then(disciplinas => this.disciplinas = disciplinas)
+      .catch(erro => this.errorHandler.handler(erro));
+  }
+
+  confirmarExlusao(disciplina: any) {
+    this.confirmation.confirm({
+      message: 'Deseja excluir este professor?',
+      accept: () => {
+        this.excluir(disciplina);
+      }
+    });
+  }
+
+  excluir(disciplina: any) {
+    this.disciplinaService.excluir(disciplina.id)
+      .then(() => {
+        this.grid.first = 0;
+        this.pesquisar();
+
+        this.toasty.success('Professor excluido com sucesso!');
+      })
+      .catch(erro => this.errorHandler.handler(erro));
+  }
+
 }
