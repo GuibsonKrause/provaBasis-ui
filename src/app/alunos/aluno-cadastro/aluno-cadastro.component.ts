@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {DisciplinaService} from '../../disciplinas/disciplina.service';
+import {ErrorHandlerService} from '../../core/error-handler.service';
 
 interface Disciplina {
   name: any;
@@ -10,22 +12,24 @@ interface Disciplina {
   templateUrl: './aluno-cadastro.component.html',
   styleUrls: ['./aluno-cadastro.component.css']
 })
-export class AlunoCadastroComponent {
+export class AlunoCadastroComponent implements OnInit {
   disciplinas: Disciplina[];
   disciplinasSelecionadas: Disciplina[];
 
-  constructor() {
-    this.disciplinas = [
-      {name: 'Português', code: 1},
-      {name: 'Matemática', code: 2},
-      {name: 'Historia', code: 3},
-      {name: 'Geografia', code: 4},
-      {name: 'Artes', code: 5},
-      {name: 'Biologia', code: 6},
-      {name: 'Sociologia', code: 7},
-      {name: 'Filosofia', code: 8},
-      {name: 'Linguas Extrangeiras', code: 9},
-      {name: 'Educação Física', code: 10}
-    ];
+  constructor(
+    private disciplinaService: DisciplinaService,
+    private errorHandler: ErrorHandlerService
+  ) {}
+
+  ngOnInit() {
+    this.carregarDisciplinas();
+  }
+
+  carregarDisciplinas() {
+    this.disciplinaService.pesquisar()
+      .then(disciplinas => {
+        this.disciplinas = disciplinas.map(d => ({ nome: d.nome, code: d.id }));
+      })
+      .catch(erro => this.errorHandler.handler(erro));
   }
 }
