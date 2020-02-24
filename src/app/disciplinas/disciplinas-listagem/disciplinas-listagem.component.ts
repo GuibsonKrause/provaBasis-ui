@@ -1,9 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import * as moment from 'moment';
 import {ToastyService} from 'ng2-toasty';
 import {ConfirmationService} from 'primeng';
 import {ErrorHandlerService} from '../../core/error-handler.service';
-import {ProfessorService} from '../../professores/professor.service';
 import {DisciplinaService} from '../disciplina.service';
 
 @Component({
@@ -28,7 +26,6 @@ export class DisciplinasListagemComponent implements OnInit {
     this.pesquisar();
   }
 
-
   pesquisar() {
     this.disciplinaService.pesquisar()
       .then(disciplinas => this.disciplinas = disciplinas)
@@ -37,7 +34,7 @@ export class DisciplinasListagemComponent implements OnInit {
 
   confirmarExlusao(disciplina: any) {
     this.confirmation.confirm({
-      message: 'Deseja excluir este professor?',
+      message: 'Deseja excluir esta disciplina?',
       accept: () => {
         this.excluir(disciplina);
       }
@@ -50,7 +47,7 @@ export class DisciplinasListagemComponent implements OnInit {
         this.grid.first = 0;
         this.pesquisar();
 
-        this.toasty.success('Professor excluido com sucesso!');
+        this.toasty.success('Disciplina excluida com sucesso!');
       })
       .catch(erro => this.errorHandler.handler(erro));
   }
