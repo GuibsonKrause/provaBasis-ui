@@ -5,6 +5,7 @@ import {ErrorHandlerService} from './error-handler.service';
 import {ToastyModule} from 'ng2-toasty';
 import {ConfirmationService, ConfirmDialogModule} from 'primeng';
 import {AlunoService} from '../alunos/aluno.service';
+import {RouterModule} from '@angular/router';
 
 
 
@@ -19,6 +20,7 @@ import {AlunoService} from '../alunos/aluno.service';
     CommonModule,
     ToastyModule.forRoot(),
     ConfirmDialogModule,
+    RouterModule,
   ],
   providers: [
     ErrorHandlerService,

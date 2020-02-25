@@ -7,7 +7,7 @@ import {ProfessoresModule} from './professores/professores.module';
 import {DisciplinasModule} from './disciplinas/disciplinas.module';
 import {CoreModule} from './core/core.module';
 import {HttpClientModule} from '@angular/common/http';
-import {Routes} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 import {AlunosListagemComponent} from './alunos/alunos-listagem/alunos-listagem.component';
 import {AlunoCadastroComponent} from './alunos/aluno-cadastro/aluno-cadastro.component';
 import {DisciplinasListagemComponent} from './disciplinas/disciplinas-listagem/disciplinas-listagem.component';
@@ -36,6 +36,7 @@ const routes: Routes = [
     ProfessoresModule,
     DisciplinasModule,
     CoreModule,
+    RouterModule.forRoot(routes),
   ],
   providers: [],
   bootstrap: [AppComponent]
