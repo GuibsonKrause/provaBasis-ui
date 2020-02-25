@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {DisciplinaService} from '../../disciplinas/disciplina.service';
 import {ErrorHandlerService} from '../../core/error-handler.service';
+import {Aluno} from '../../core/model';
+import {AlunoService} from '../aluno.service';
+import {ToastyService} from 'ng2-toasty';
 
 @Component({
   selector: 'app-aluno-cadastro',
@@ -9,14 +12,28 @@ import {ErrorHandlerService} from '../../core/error-handler.service';
 })
 export class AlunoCadastroComponent implements OnInit {
   disciplinas = [];
+  aluno = new Aluno();
+  spresp: any;
 
   constructor(
     private disciplinaService: DisciplinaService,
+    private alunoService: AlunoService,
+    private toasty: ToastyService,
     private errorHandler: ErrorHandlerService
   ) {}
 
   ngOnInit() {
     this.carregarDisciplinas();
+  }
+
+  salvar() {
+    this.aluno.cpf = this.formatarCpf(this.aluno.cpf);
+    this.alunoService
+      .adicionar(this.aluno)
+      .subscribe(() => {
+        this.toasty.success('Aluno cadastrado com sucesso');
+      });
+    console.log(this.aluno);
   }
 
   carregarDisciplinas() {
@@ -26,4 +43,11 @@ export class AlunoCadastroComponent implements OnInit {
       })
       .catch(erro => this.errorHandler.handler(erro));
   }
+
+  formatarCpf(cpf) {
+    const dot = /\./gi;
+    cpf = cpf.replace('-', '');
+    cpf = cpf.replace(dot, '');
+    return  cpf;
+}
 }

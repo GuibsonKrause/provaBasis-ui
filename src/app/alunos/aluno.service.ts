@@ -1,5 +1,12 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Aluno} from '../core/model';
+import {Observable} from 'rxjs';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json'})
+};
 
 
 @Injectable({
@@ -22,4 +29,25 @@ export class AlunoService {
       .toPromise()
       .then(() => null);
   }
+
+  /*
+  adicionar(aluno: Aluno): Promise<Aluno> {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.post(this.alunosUrl,
+      JSON.stringify(aluno), {headers})
+      .toPromise()
+      .then(response => response)
+  }
+   */
+/*
+  adicionar(aluno: Aluno): Observable<Aluno> {
+    return this.http.post<Aluno>(this.alunosUrl, aluno);
+  }
+
+ */
+
+  adicionar(aluno: Aluno): Observable<any> {
+    return this.http.post(this.alunosUrl, aluno);
+  }
+
 }

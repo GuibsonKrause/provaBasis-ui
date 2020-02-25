@@ -1,5 +1,5 @@
 <div class="container">
-  <form #usuarioForm="ngForm">
+  <form #usuarioForm="ngForm" (ngSubmit)="salvar()">
     <div class="ui-g">
       <div class="ui-g-12">
         <h1>Novo Aluno</h1>
@@ -8,7 +8,8 @@
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Nome</label>
         <input pInputText type="text" name="nome"
-               ngModel #nome="ngModel" required minlength="4" maxlength="50"/>
+               ngModel #nome="ngModel" required minlength="4" maxlength="50"
+               [(ngModel)]="aluno.nome"/>
         <app-message [control]="nome" error="required"
                      text="Informe um nome"></app-message>
         <app-message [control]="nome" error="minlength"
@@ -18,14 +19,16 @@
       <div class="ui-g-6 ui-md-3 ui-fluid">
         <label>CPF</label>
         <p-inputMask mask="999.999.999-99" name="cpf"
-                     ngModel #cpf="ngModel" required></p-inputMask>
+                     ngModel #cpf="ngModel" required
+                     [(ngModel)]="aluno.cpf"></p-inputMask>
         <app-message [control]="cpf" error="required"
                      text="Informe o CPF"></app-message>
       </div>
       <div class="ui-g-6 ui-md-3 ui-fluid">
         <label>Matrícula</label>
         <input type="text" pInputText name="matricula"
-               ngModel #matricula="ngModel" required minlength="6" maxlength="6"/>
+               ngModel #matricula="ngModel" required minlength="6" maxlength="6"
+               [(ngModel)]="aluno.matricula"/>
 
         <app-message [control]="matricula" error="required"
                      text="Informe a matrícula"></app-message>
@@ -35,7 +38,8 @@
       </div>
       <div class="ui-g-12 ui-md-4 ui-fluid">
         <p-listbox [options]="disciplinas" name="listDisciplina"
-                   multiple="multiple" checkbox="checkbox" filter="filter" optionLabel="name">
+                   multiple="multiple" checkbox="checkbox" filter="filter" optionLabel="name"
+                   [(ngModel)]="aluno.disciplinas">
           <p-header>
             <i class="fa fa-book"></i>
             Disciplinas
@@ -45,7 +49,8 @@
       <div class="ui-g-6 ui-md-3 ui-fluid">
         <label>Data de Nascimento</label>
         <p-calendar dateFormat="dd/mm/yy" [showIcon]="true" name="nascimento"
-                    ngModel #nascimento="ngModel" required></p-calendar>
+                    ngModel #nascimento="ngModel" required
+                    [(ngModel)]="aluno.dataNascimento"></p-calendar>
 
         <app-message [control]="nascimento" error="required"
                      text="Informe a data de nascimento"></app-message>
