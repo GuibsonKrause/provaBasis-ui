@@ -15,6 +15,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AlunosListagemComponent} from './alunos-listagem/alunos-listagem.component';
 import {AlunoCadastroComponent} from './aluno-cadastro/aluno-cadastro.component';
 import {SharedModule} from '../shared/shared.module';
+import {RouterModule} from '@angular/router';
 
 
 
@@ -43,6 +44,7 @@ import {SharedModule} from '../shared/shared.module';
     PaginatorModule,
     ListboxModule,
     SharedModule,
+    RouterModule,
   ]
 })
 export class AlunosModule { }

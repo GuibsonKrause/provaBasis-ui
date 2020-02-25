@@ -1,11 +1,13 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Aluno} from '../core/model';
 import {Observable} from 'rxjs';
+import * as moment from 'moment';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type':  'application/json'})
+    'Content-Type': 'application/json'
+  })
 };
 
 
@@ -16,12 +18,13 @@ export class AlunoService {
 
   alunosUrl = 'http://localhost:8080/api/alunos';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   pesquisar(): Promise<any> {
-    return  this.http.get(`${this.alunosUrl}`)
-    .toPromise()
-    .then(response => response);
+    return this.http.get(`${this.alunosUrl}`)
+      .toPromise()
+      .then(response => response);
   }
 
   excluir(codigo: number): Promise<void> {
@@ -30,24 +33,24 @@ export class AlunoService {
       .then(() => null);
   }
 
-  /*
-  adicionar(aluno: Aluno): Promise<Aluno> {
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.http.post(this.alunosUrl,
-      JSON.stringify(aluno), {headers})
-      .toPromise()
-      .then(response => response)
-  }
-   */
-/*
-  adicionar(aluno: Aluno): Observable<Aluno> {
-    return this.http.post<Aluno>(this.alunosUrl, aluno);
-  }
-
- */
-
   adicionar(aluno: Aluno): Observable<any> {
     return this.http.post(this.alunosUrl, aluno);
   }
 
+  findById(id: number): Promise<any> {
+    return this.http.get(`${this.alunosUrl}/id`)
+      .toPromise()
+      .then(response => response);
+  }
+
+  atualizar(aluno: Aluno): Observable<any> {
+    return this.http.put(this.alunosUrl, aluno);
+  }
+
+  private converterStringsParaDatas(alunos: Aluno[]) {
+    for (const aluno of alunos) {
+      aluno.dataNascimento = moment(aluno.dataNascimento,
+        'YYYY-MM-DD').toDate();
+    }
+  }
 }

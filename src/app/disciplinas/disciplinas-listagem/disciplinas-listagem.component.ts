@@ -3,6 +3,7 @@ import {ToastyService} from 'ng2-toasty';
 import {ConfirmationService} from 'primeng';
 import {ErrorHandlerService} from '../../core/error-handler.service';
 import {DisciplinaService} from '../disciplina.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-disciplinas-listagem',
@@ -18,7 +19,8 @@ export class DisciplinasListagemComponent implements OnInit {
     private disciplinaService: DisciplinaService,
     private toasty: ToastyService,
     private confirmation: ConfirmationService,
-    private errorHandler: ErrorHandlerService
+    private errorHandler: ErrorHandlerService,
+    private route: ActivatedRoute
   ) {
   }
 

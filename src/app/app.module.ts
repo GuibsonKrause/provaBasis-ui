@@ -18,10 +18,13 @@ import {ProfessorCadastroComponent} from './professores/professor-cadastro/profe
 
 const routes: Routes = [
   {path: 'alunos', component: AlunosListagemComponent},
+  {path: 'alunos/:id', component: AlunoCadastroComponent},
   {path: 'alunos/novo', component: AlunoCadastroComponent},
   {path: 'disciplinas', component: DisciplinasListagemComponent},
+  {path: 'disciplinas/:id', component: DisciplinaCadastroComponent},
   {path: 'disciplinas/nova', component: DisciplinaCadastroComponent},
   {path: 'professores', component: ProfessoresListagemComponent},
+  {path: 'professores/:id', component: ProfessorCadastroComponent},
   {path: 'professores/novo', component: ProfessorCadastroComponent},
 ];
 

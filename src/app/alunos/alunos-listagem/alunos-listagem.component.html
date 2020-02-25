@@ -28,7 +28,7 @@
               </td>
               <td class="col-acoes">
                 <a pButton icon="fa fa-eye" style="margin-right: 8px"
-                   pTooltip="Detalhar" tooltipPosition="top">
+                   pTooltip="Detalhar" tooltipPosition="top" [routerLink]="['/alunos/, aluno.id']">
                 </a>
                 <button pButton icon="fa fa-trash"
                         pTooltip="Excluir" tooltipPosition="top"
@@ -41,7 +41,7 @@
       </div>
 
       <div class="ui-g-12">
-        <a pButton label="Novo Aluno"></a>
+        <a pButton label="Novo Aluno" routerLink="/alunos/novo"></a>
       </div>
 
     </div>
