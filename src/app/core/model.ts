@@ -1,5 +1,10 @@
 export class Disciplina {
   id: number;
+  nome: string;
+  ativa: number;
+  descricao: string;
+  cargaHoraria: number;
+  professor = new Professor();
 }
 
 export class Professor {

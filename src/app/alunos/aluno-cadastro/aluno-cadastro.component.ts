@@ -11,7 +11,7 @@ import {ToastyService} from 'ng2-toasty';
   styleUrls: ['./aluno-cadastro.component.css']
 })
 export class AlunoCadastroComponent implements OnInit {
-  disciplinas = [];
+  disciplinas: any[];
   aluno = new Aluno();
   spresp: any;
 
@@ -39,7 +39,7 @@ export class AlunoCadastroComponent implements OnInit {
   carregarDisciplinas() {
     this.disciplinaService.pesquisar()
       .then(disciplinas => {
-        this.disciplinas = disciplinas.map(d => ({ name: d.nome, code: d.id }));
+        this.disciplinas = disciplinas.map(d => ({ label: d.nome, value: d }));
       })
       .catch(erro => this.errorHandler.handler(erro));
   }

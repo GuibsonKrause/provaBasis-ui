@@ -7,7 +7,7 @@ import {
   CalendarModule,
   ChipsModule,
   InputMaskModule,
-  InputTextModule, ListboxModule, PaginatorModule,
+  InputTextModule, ListboxModule, MultiSelectModule, PaginatorModule,
   TableModule,
   TooltipModule
 } from 'primeng';
@@ -45,6 +45,7 @@ import {RouterModule} from '@angular/router';
     ListboxModule,
     SharedModule,
     RouterModule,
+    MultiSelectModule,
   ]
 })
 export class AlunosModule { }
