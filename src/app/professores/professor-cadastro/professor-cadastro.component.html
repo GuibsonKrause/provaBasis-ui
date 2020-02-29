@@ -1,5 +1,5 @@
 <div class="container">
-  <form #usuarioForm="ngForm">
+  <form #usuarioForm="ngForm" (ngSubmit)="salvar()">
     <div class="ui-g">
       <div class="ui-g-12">
         <h1>Novo Professor</h1>
@@ -8,7 +8,8 @@
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Nome</label>
         <input pInputText type="text" name="nome"
-               ngModel #nome="ngModel" required minlength="4" maxlength="50"/>
+               ngModel #nome="ngModel" required minlength="4" maxlength="50"
+               [(ngModel)]="professor.nome"/>
 
         <app-message [control]="nome" error="required"
                      text="Informe um nome"></app-message>
@@ -19,7 +20,8 @@
       <div class="ui-g-6 ui-md-3 ui-fluid">
         <label>Matrícula</label>
         <input type="text" pInputText name="matricula"
-               ngModel #matricula="ngModel" required minlength="6" maxlength="6"/>
+               ngModel #matricula="ngModel" required minlength="6" maxlength="6"
+               [(ngModel)]="professor.matricula"/>
 
         <app-message [control]="matricula" error="required"
                      text="Informe a matrícula"></app-message>
@@ -30,14 +32,16 @@
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Área de atuação</label>
         <input type="text" pInputText name="atuacao"
-               ngModel #atuacao="ngModel" required/>
+               ngModel #atuacao="ngModel" required
+               [(ngModel)]="professor.area"/>
         <app-message [control]="atuacao" error="required"
                      text="Informe a área de atuação"></app-message>
       </div>
       <div class="ui-g-6 ui-md-3 ui-fluid">
         <label>Data de Nascimento</label>
         <p-calendar dateFormat="dd/mm/yy" [showIcon]="true" name="nascimento"
-                    ngModel #nascimento="ngModel" required></p-calendar>
+                    ngModel #nascimento="ngModel" required
+                    [(ngModel)]="professor.dataNascimento"></p-calendar>
         <app-message [control]="nascimento" error="required"
                      text="Informe a data de nascimento"></app-message>
       </div>

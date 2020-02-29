@@ -9,6 +9,11 @@ export class Disciplina {
 
 export class Professor {
   id: number;
+  nome: string;
+  dataNascimento: Date;
+  area: string;
+  matricula: string;
+  disciplinas = new Array<Disciplina>();
 }
 
 export class Aluno {

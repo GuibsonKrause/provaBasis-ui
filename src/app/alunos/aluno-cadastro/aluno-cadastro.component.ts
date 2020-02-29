@@ -13,7 +13,6 @@ import {ToastyService} from 'ng2-toasty';
 export class AlunoCadastroComponent implements OnInit {
   disciplinas: any[];
   aluno = new Aluno();
-  spresp: any;
 
   constructor(
     private disciplinaService: DisciplinaService,
@@ -33,7 +32,6 @@ export class AlunoCadastroComponent implements OnInit {
       .subscribe(() => {
         this.toasty.success('Aluno cadastrado com sucesso');
       });
-    console.log(this.aluno);
   }
 
   carregarDisciplinas() {
