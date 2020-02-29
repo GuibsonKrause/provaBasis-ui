@@ -6,10 +6,11 @@
       </div>
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
-        <label>Nome</label>
-        <input pInputText type="text" name="nome"
-               ngModel #nome="ngModel" required minlength="4" maxlength="50"
-               [(ngModel)]="aluno.nome"/>
+        <label> Nome
+          <input pInputText type="text" name="nome"
+                 ngModel #nome="ngModel" required minlength="4" maxlength="50"
+                 [(ngModel)]="aluno.nome"/>
+        </label>
         <app-message [control]="nome" error="required"
                      text="Informe um nome"></app-message>
         <app-message [control]="nome" error="minlength"
@@ -25,10 +26,11 @@
                      text="Informe o CPF"></app-message>
       </div>
       <div class="ui-g-6 ui-md-3 ui-fluid">
-        <label>Matrícula</label>
-        <input type="text" pInputText name="matricula"
-               ngModel #matricula="ngModel" required minlength="6" maxlength="6"
-               [(ngModel)]="aluno.matricula"/>
+        <label> Matrícula
+          <input type="text" pInputText name="matricula"
+                 ngModel #matricula="ngModel" required minlength="6" maxlength="6"
+                 [(ngModel)]="aluno.matricula"/>
+        </label>
 
         <app-message [control]="matricula" error="required"
                      text="Informe a matrícula"></app-message>

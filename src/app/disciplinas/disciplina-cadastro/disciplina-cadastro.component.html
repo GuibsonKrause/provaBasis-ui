@@ -1,14 +1,16 @@
 <div class="container">
-  <form #usuarioForm="ngForm">
+  <form #usuarioForm="ngForm" (ngSubmit)="salvar()">
     <div class="ui-g">
       <div class="ui-g-12">
         <h1>Nova Disciplina</h1>
       </div>
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
-        <label>Nome</label>
-        <input pInputText type="text" name="nome"
-               ngModel #nome="ngModel" required minlength="4" maxlength="50"/>
+        <label> Nome
+          <input pInputText type="text" name="nome"
+                 ngModel #nome="ngModel" required minlength="4" maxlength="50"
+                 [(ngModel)]="disciplina.nome"/>
+        </label>
         <app-message [control]="nome" error="required"
                      text="Informe um nome"></app-message>
         <app-message [control]="nome" error="minlength"
@@ -16,28 +18,37 @@
                         caracteres!"></app-message>
       </div>
       <div class="ui-g-12 ui-md-6 ui-fluid">
-        <label>Descrição</label>
-        <input type="text" pInputText name="descricao"
-               ngModel #descricao="ngModel" required maxlength="200"/>
+        <label> Descrição
+          <input type="text" pInputText name="descricao"
+                 ngModel #descricao="ngModel" required maxlength="200"
+                 [(ngModel)]="disciplina.descricao"/>
+        </label>
         <app-message [control]="descricao" error="required"
                      text="Informe a descrição"></app-message>
       </div>
       <div class="ui-g-9 ui-md-6 ui-fluid">
         <label>Professor</label>
         <p-dropdown placeholder="Selecione..." autoWidth="false"
-                    [options]="professores"></p-dropdown>
+                    [options]="professores" name="professor" required ngmodel #professor="ngModel"
+                    [(ngModel)]="disciplina.professor"></p-dropdown>
+
+        <app-message [control]="professor" error="required"
+                     text="Informe um professor"></app-message>
       </div>
       <div class="ui-g-6 ui-md-3 ui-fluid">
-        <label>Carga horária</label>
-        <input type="number" pInputText name="carga"
-               ngModel #carga="ngModel" required/>
+        <label> Carga horária
+          <input type="number" pInputText name="carga"
+                 ngModel #carga="ngModel" required
+                 [(ngModel)]="disciplina.cargaHoraria"/>
+        </label>
 
         <app-message [control]="carga" error="required"
                      text="Informe a carga horária"></app-message>
       </div>
       <div class="ui-g-12">
         <label>Ativa </label>
-        <p-checkbox [(ngModel)]="checked" binary="true" name="checkAtiva"></p-checkbox>
+        <p-checkbox [(ngModel)]="checked" binary="true" name="checkAtiva"
+                    [(ngModel)]="disciplina.ativa"></p-checkbox>
       </div>
       <div class="ui-g-12">
         <button pButton type="submit" label="Salvar" class="ui-button-success" style="margin-right: 8px"

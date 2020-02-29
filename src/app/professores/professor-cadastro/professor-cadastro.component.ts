@@ -25,7 +25,7 @@ export class ProfessorCadastroComponent implements OnInit {
     this.professorService
       .adicionar(this.professor)
       .subscribe(() => {
-        this.toasty.success('Professor cadastrado com sucesso');
+        this.toasty.success('Professor cadastrado com sucesso!');
       }, error => this.errorHandler.handler(error));
   }
 

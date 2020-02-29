@@ -30,8 +30,8 @@ export class AlunoCadastroComponent implements OnInit {
     this.alunoService
       .adicionar(this.aluno)
       .subscribe(() => {
-        this.toasty.success('Aluno cadastrado com sucesso');
-      });
+        this.toasty.success('Aluno cadastrado com sucesso!');
+      }, error => this.errorHandler.handler(error));
   }
 
   carregarDisciplinas() {

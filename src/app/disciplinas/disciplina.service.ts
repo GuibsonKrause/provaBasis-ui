@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {Disciplina} from '../core/model';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +16,10 @@ export class DisciplinaService {
     return  this.http.get(`${this.disciplinasUrl}`)
       .toPromise()
       .then(response => response);
+  }
+
+  adicionar(disciplina: Disciplina): Observable<any> {
+    return this.http.post(this.disciplinasUrl, disciplina);
   }
 
   excluir(codigo: number): Promise<void> {

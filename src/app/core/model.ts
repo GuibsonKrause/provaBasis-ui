@@ -4,7 +4,7 @@ export class Disciplina {
   ativa: number;
   descricao: string;
   cargaHoraria: number;
-  professor = new Professor();
+  professor: Professor;
 }
 
 export class Professor {
