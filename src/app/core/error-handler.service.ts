@@ -14,6 +14,9 @@ export class ErrorHandlerService {
       msg = errorResponse;
     } else {
       msg = errorResponse.error.message;
+      if (msg.includes('CPF inválido')) {
+        msg = 'CPF inválido!';
+      }
       console.log('Ocorreu um erro ', errorResponse);
     }
     this.toasty.error(msg);
