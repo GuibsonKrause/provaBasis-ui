@@ -13,7 +13,7 @@ export class ErrorHandlerService {
     if (typeof errorResponse === 'string') {
       msg = errorResponse;
     } else {
-      msg = 'Erro ao processar serviço. Tente novamente';
+      msg = errorResponse.error.message;
       console.log('Ocorreu um erro ', errorResponse);
     }
     this.toasty.error(msg);
