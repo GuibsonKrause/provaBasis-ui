@@ -2,7 +2,7 @@
   <div class="ui-g">
     <div class="ui-g">
       <div>
-        <h1>Alunos</h1>
+        <h2>Alunos</h2>
       </div>
     </div>
 
@@ -28,7 +28,7 @@
               </td>
               <td class="col-acoes">
                 <a pButton icon="fa fa-eye" style="margin-right: 8px"
-                   pTooltip="Detalhar" tooltipPosition="top" [routerLink]="['/alunos/, aluno.id']">
+                   pTooltip="Detalhar" tooltipPosition="top" (click)="detalhar(aluno.id)">
                 </a>
                 <button pButton icon="fa fa-trash"
                         pTooltip="Excluir" tooltipPosition="top"
@@ -42,6 +42,52 @@
 
       <div class="ui-g-12">
         <a pButton label="Novo Aluno" routerLink="/alunos/novo"></a>
+      </div>
+
+    </div>
+  </div>
+  <!-- Modal -->
+  <div id="myModal" class="modal fade" role="dialog" [ngClass]="{'show': showModal}">
+    <div class="modal-dialog modal-sm modal-dialog-centered">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Aluno detalhado</h4>
+        </div>
+        <div class="modal-body">
+          <div class="ui-g-9 ui-fluid">
+            <label><b>Matrícula:</b></label> {{aluno.matricula}}
+          </div>
+          <div class="ui-g-3 ui-fluid">
+            <label><b>Id:</b></label> {{aluno.id}}
+          </div>
+          <div class="ui-g-12 ui-fluid">
+            <label><b>Nome:</b></label> {{aluno.nome}}
+          </div>
+
+          <div class="ui-g-12">
+            <label>
+              <p-table [value]="aluno.disciplinas" [paginator]="true" [rows]="5"
+                       [responsive]="true" #tableDisciplina>
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th>Disciplinas:</th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-disciplina>
+                  <tr>
+                    <td><span class="ui-column-title">Nome</span>{{ disciplina.nome }}</td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </label>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button pButton type="button" (click)="showModal=false" label="Fechar" style="margin-right: 8px"></button>
+        </div>
       </div>
 
     </div>

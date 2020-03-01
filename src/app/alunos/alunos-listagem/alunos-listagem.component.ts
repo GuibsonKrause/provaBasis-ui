@@ -4,6 +4,7 @@ import * as moment from 'moment';
 import {ToastyService} from 'ng2-toasty';
 import {ConfirmationService} from 'primeng';
 import {ErrorHandlerService} from '../../core/error-handler.service';
+import {Aluno} from "../../core/model";
 
 @Component({
   selector: 'app-alunos-listagem',
@@ -13,6 +14,8 @@ import {ErrorHandlerService} from '../../core/error-handler.service';
 export class AlunosListagemComponent implements OnInit {
   alunos = [];
   @ViewChild('table') grid;
+  showModal: any;
+  aluno: Aluno = new Aluno();
 
   constructor(
     private alunoService: AlunoService,
@@ -54,6 +57,13 @@ export class AlunosListagemComponent implements OnInit {
         this.toasty.success('Aluno excluido com sucesso!');
       })
       .catch(erro => this.errorHandler.handler(erro));
+  }
+
+  detalhar(id: number) {
+    this.alunoService.findById(id)
+      .then(alunos => this.aluno = alunos)
+      .catch(erro => this.errorHandler.handler(erro));
+    this.showModal = true;
   }
 
 }

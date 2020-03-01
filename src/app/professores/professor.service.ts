@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Professor} from '../core/model';
-import {Observable} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
+
+const arrayProfessores = [];
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +11,12 @@ import {Observable} from 'rxjs';
 export class ProfessorService {
 
   professoresUrl = 'http://localhost:8080/api/professores';
+
+  public detalhado = new BehaviorSubject<Array<any>>(arrayProfessores);
+
+  setProfessor(obsProfessor: Array<any>) {
+    this.detalhado.next(obsProfessor);
+  }
 
   constructor(private http: HttpClient) { }
 

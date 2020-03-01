@@ -48,3 +48,14 @@ a
   text-decoration: none;
 }
 
+h2
+{
+  font-family: "Open Sans", "Helvetica Neue", sans-serif;
+  margin-top: 10px;
+}
+
+.modal-title
+{
+  text-align: center;
+}
+

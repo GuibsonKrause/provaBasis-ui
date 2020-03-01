@@ -2,15 +2,15 @@
   <form #usuarioForm="ngForm" (ngSubmit)="salvar()">
     <div class="ui-g">
       <div class="ui-g-12">
-        <h1>Nova Disciplina</h1>
+        <h2>Nova Disciplina</h2>
       </div>
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
-        <label> Nome
+        <label>Nome</label>
           <input pInputText type="text" name="nome"
                  ngModel #nome="ngModel" required minlength="4" maxlength="50"
                  [(ngModel)]="disciplina.nome"/>
-        </label>
+
         <app-message [control]="nome" error="required"
                      text="Informe um nome"></app-message>
         <app-message [control]="nome" error="minlength"
@@ -18,11 +18,11 @@
                         caracteres!"></app-message>
       </div>
       <div class="ui-g-12 ui-md-6 ui-fluid">
-        <label> Descrição
+        <label>Descrição</label>
           <input type="text" pInputText name="descricao"
                  ngModel #descricao="ngModel" required maxlength="200"
                  [(ngModel)]="disciplina.descricao"/>
-        </label>
+
         <app-message [control]="descricao" error="required"
                      text="Informe a descrição"></app-message>
       </div>
@@ -36,19 +36,18 @@
                      text="Informe um professor"></app-message>
       </div>
       <div class="ui-g-6 ui-md-3 ui-fluid">
-        <label> Carga horária
+        <label>Carga horária</label>
           <input type="number" pInputText name="carga"
                  ngModel #carga="ngModel" required
                  [(ngModel)]="disciplina.cargaHoraria"/>
-        </label>
 
         <app-message [control]="carga" error="required"
                      text="Informe a carga horária"></app-message>
       </div>
       <div class="ui-g-12">
-        <label>Ativa </label>
-        <p-checkbox [(ngModel)]="checked" binary="true" name="checkAtiva"
-                    [(ngModel)]="disciplina.ativa"></p-checkbox>
+        <label>Ativa</label>
+        <p-checkbox [(ngModel)]="checked" binary="true"  name="checkAtiva"
+                    [(ngModel)]="disciplina.ativa" style="margin-left: 3px"></p-checkbox>
       </div>
       <div class="ui-g-12">
         <button pButton type="submit" label="Salvar" class="ui-button-success" style="margin-right: 8px"
