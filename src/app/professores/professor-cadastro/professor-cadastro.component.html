@@ -6,11 +6,10 @@
       </div>
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
-        <label>Nome
+        <label>Nome</label>
           <input pInputText type="text" name="nome"
                  ngModel #nome="ngModel" required minlength="4" maxlength="50"
                  [(ngModel)]="professor.nome"/>
-        </label>
 
         <app-message [control]="nome" error="required"
                      text="Informe um nome"></app-message>
@@ -19,11 +18,10 @@
                         caracteres!"></app-message>
       </div>
       <div class="ui-g-6 ui-md-3 ui-fluid">
-        <label>Matrícula
+        <label>Matrícula</label>
           <input type="text" pInputText name="matricula"
                  ngModel #matricula="ngModel" required minlength="6" maxlength="6"
                  [(ngModel)]="professor.matricula"/>
-        </label>
 
         <app-message [control]="matricula" error="required"
                      text="Informe a matrícula"></app-message>
@@ -32,11 +30,11 @@
                         caracteres!"></app-message>
       </div>
       <div class="ui-g-12 ui-md-6 ui-fluid">
-        <label>Área de atuação
+        <label>Área de atuação</label>
           <input type="text" pInputText name="atuacao"
                  ngModel #atuacao="ngModel" required
                  [(ngModel)]="professor.area"/>
-        </label>
+
         <app-message [control]="atuacao" error="required"
                      text="Informe a área de atuação"></app-message>
       </div>
