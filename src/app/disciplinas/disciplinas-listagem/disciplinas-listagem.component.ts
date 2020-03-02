@@ -4,6 +4,7 @@ import {ConfirmationService} from 'primeng';
 import {ErrorHandlerService} from '../../core/error-handler.service';
 import {DisciplinaService} from '../disciplina.service';
 import {ActivatedRoute} from '@angular/router';
+import {Disciplina, Professor} from '../../core/model';
 
 @Component({
   selector: 'app-disciplinas-listagem',
@@ -12,8 +13,10 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class DisciplinasListagemComponent implements OnInit {
   disciplinas = [];
-
   @ViewChild('table') grid;
+  showModal: any;
+  disciplina: Disciplina = new Disciplina();
+  professor: Professor = new Professor();
 
   constructor(
     private disciplinaService: DisciplinaService,
@@ -52,6 +55,14 @@ export class DisciplinasListagemComponent implements OnInit {
         this.toasty.success('Disciplina excluida com sucesso!');
       })
       .catch(erro => this.errorHandler.handler(erro));
+  }
+
+  detalhar(id: number) {
+    this.disciplinaService.findById(id)
+      .then(disciplinas => this.disciplina = disciplinas)
+      .catch(erro => this.errorHandler.handler(erro));
+    this.professor = this.disciplina.professor;
+    this.showModal = true;
   }
 
 }

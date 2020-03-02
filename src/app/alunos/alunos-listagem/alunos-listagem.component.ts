@@ -4,7 +4,7 @@ import * as moment from 'moment';
 import {ToastyService} from 'ng2-toasty';
 import {ConfirmationService} from 'primeng';
 import {ErrorHandlerService} from '../../core/error-handler.service';
-import {Aluno} from "../../core/model";
+import {Aluno} from '../../core/model';
 
 @Component({
   selector: 'app-alunos-listagem',

@@ -27,4 +27,10 @@ export class DisciplinaService {
       .toPromise()
       .then(() => null);
   }
+
+  findById(id: number): Promise<any> {
+    return this.http.get(`${this.disciplinasUrl}/detalhes/${id}`)
+      .toPromise()
+      .then(response => response);
+  }
 }

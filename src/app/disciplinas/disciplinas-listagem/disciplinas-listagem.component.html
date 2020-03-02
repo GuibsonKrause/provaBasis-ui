@@ -24,10 +24,11 @@
               <td class="col-id"><span class="ui-column-title">Id</span>{{ disciplina.id }}</td>
               <td><span class="ui-column-title">Nome</span>{{ disciplina.nome }}</td>
               <td><span class="ui-column-title">Descrição</span>{{ disciplina.descricao }}</td>
-              <td class="col-cargaHoraria"><span class="ui-column-title">Carga Horária</span>{{ disciplina.cargaHoraria }}</td>
+              <td class="col-cargaHoraria"><span
+                class="ui-column-title">Carga Horária</span>{{ disciplina.cargaHoraria }}</td>
               <td class="col-acoes">
                 <a pButton icon="fa fa-eye" style="margin-right: 8px"
-                   pTooltip="Detalhar" tooltipPosition="top" [routerLink]="['/disciplinas/, disciplina.id']">
+                   pTooltip="Detalhar" tooltipPosition="top" (click)="detalhar(disciplina.id)">
                 </a>
                 <button pButton icon="fa fa-trash"
                         pTooltip="Excluir" tooltipPosition="top"
@@ -44,5 +45,36 @@
       </div>
 
     </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog" [ngClass]="{'show': showModal}">
+  <div class="modal-dialog modal-sm modal-dialog-centered">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Disciplina detalhada</h4>
+      </div>
+      <div class="modal-body">
+        <div class="ui-g-9 ui-fluid">
+          <label><b>Carga Horária:</b></label> {{disciplina.cargaHoraria}}
+        </div>
+        <div class="ui-g-3 ui-fluid">
+          <label><b>Id:</b></label> {{disciplina.id}}
+        </div>
+        <div class="ui-g-12 ui-fluid">
+          <label><b>Nome:</b></label> {{disciplina.nome}}
+        </div>
+        <div class="ui-g-12 ui-fluid">
+          <label><b>Professor:</b></label> {{professor.nome}}
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button pButton type="button" (click)="showModal=false" label="Fechar" style="margin-right: 8px"></button>
+      </div>
+    </div>
+
   </div>
 </div>
