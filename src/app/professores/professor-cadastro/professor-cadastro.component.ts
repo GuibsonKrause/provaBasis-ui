@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Professor} from '../../core/model';
+import {Aluno, Professor} from '../../core/model';
 import {ProfessorService} from '../professor.service';
 import {ToastyService} from 'ng2-toasty';
 import {ErrorHandlerService} from '../../core/error-handler.service';
@@ -21,12 +21,20 @@ export class ProfessorCadastroComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  salvar() {
+  salvar(form) {
     this.professorService
       .adicionar(this.professor)
       .subscribe(() => {
         this.toasty.success('Professor cadastrado com sucesso!');
       }, error => this.errorHandler.handler(error));
+    this.resetForm(form);
+  }
+
+  resetForm(form) {
+    form.reset();
+    setTimeout(function() {
+      this.professor = new Professor();
+    }.bind(this), 1);
   }
 
 }

@@ -3,7 +3,7 @@ import {DisciplinaService} from '../disciplina.service';
 import {ErrorHandlerService} from '../../core/error-handler.service';
 import {ProfessorService} from '../../professores/professor.service';
 import {ToastyService} from 'ng2-toasty';
-import {Disciplina} from '../../core/model';
+import {Aluno, Disciplina} from '../../core/model';
 import {SelectItem} from "primeng";
 
 @Component({
@@ -28,13 +28,14 @@ export class DisciplinaCadastroComponent implements OnInit {
     console.log(this.professores);
   }
 
-  salvar() {
+  salvar(form) {
     this.ativaParceInt();
     this.disciplinaService
       .adicionar(this.disciplina)
       .subscribe(() => {
         this.toasty.success('Disciplina cadastrada com sucesso!');
       }, error => this.errorHandler.handler(error));
+    this.resetForm(form);
   }
 
   carregarProfessores() {
@@ -47,5 +48,12 @@ export class DisciplinaCadastroComponent implements OnInit {
 
   ativaParceInt() {
     this.disciplina.ativa = this.disciplina.ativa ? 1 : 0;
+  }
+
+  resetForm(form) {
+    form.reset();
+    setTimeout(function() {
+      this.disciplina = new Disciplina();
+    }.bind(this), 1);
   }
 }

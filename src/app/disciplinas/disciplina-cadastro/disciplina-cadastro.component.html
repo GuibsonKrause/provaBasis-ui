@@ -1,5 +1,5 @@
 <div class="container">
-  <form #usuarioForm="ngForm" (ngSubmit)="salvar()">
+  <form #usuarioForm="ngForm" (ngSubmit)="salvar(usuarioForm)">
     <div class="ui-g">
       <div class="ui-g-12">
         <h2>Nova Disciplina</h2>
@@ -52,7 +52,8 @@
       <div class="ui-g-12">
         <button pButton type="submit" label="Salvar" class="ui-button-success" style="margin-right: 8px"
                 [disabled]="!usuarioForm.valid"></button>
-        <button pButton type="button" label="Novo" style="margin-right: 8px"></button>
+        <button pButton type="button" label="Novo" style="margin-right: 8px"
+                (click)="resetForm(usuarioForm)"></button>
         <a routerLink="/disciplinas">Voltar para listagem</a>
       </div>
     </div>

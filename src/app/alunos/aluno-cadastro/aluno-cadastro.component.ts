@@ -19,25 +19,27 @@ export class AlunoCadastroComponent implements OnInit {
     private alunoService: AlunoService,
     private toasty: ToastyService,
     private errorHandler: ErrorHandlerService
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.carregarDisciplinas();
   }
 
-  salvar() {
+  salvar(form) {
     this.aluno.cpf = this.formatarCpf(this.aluno.cpf);
     this.alunoService
       .adicionar(this.aluno)
       .subscribe(() => {
         this.toasty.success('Aluno cadastrado com sucesso!');
       }, error => this.errorHandler.handler(error));
+    this.resetForm(form);
   }
 
   carregarDisciplinas() {
     this.disciplinaService.pesquisar()
       .then(disciplinas => {
-        this.disciplinas = disciplinas.map(d => ({ label: d.nome, value: d }));
+        this.disciplinas = disciplinas.map(d => ({label: d.nome, value: d}));
       })
       .catch(erro => this.errorHandler.handler(erro));
   }
@@ -46,6 +48,13 @@ export class AlunoCadastroComponent implements OnInit {
     const dot = /\./gi;
     cpf = cpf.replace('-', '');
     cpf = cpf.replace(dot, '');
-    return  cpf;
-}
+    return cpf;
+  }
+
+  resetForm(form) {
+    form.reset();
+    setTimeout(function() {
+      this.aluno = new Aluno();
+    }.bind(this), 1);
+  }
 }
